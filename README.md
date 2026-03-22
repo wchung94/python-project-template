@@ -16,7 +16,8 @@ copier copy https://github.com/wchung94/python-project-template/copier-template/
 
 ## Documentation
 
-Include a link to your project's full documentation here.
+If you are lazy and have a short-term memory like me, use this template to setup your python project fast and easy.
+Time wasted with repetitive task can be spent on playing video games and watching some slice-of-life animes.
 
 ## Contributing
 
