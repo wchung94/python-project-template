@@ -1,0 +1,10 @@
+# Usage: make uv-run ARGS="python -m pip --version"
+run:
+	uv run python main.py
+
+test:
+	uv run pytest -v
+
+ruff:
+	uv run ruff check .
+	uv run ruff format --check .
