@@ -1,0 +1,53 @@
+# Configuration
+Ruff config is stored in `pyproject.toml`
+
+## Ruff Rules
+
+### `[tool.ruff]`
+
+| Setting | Value |
+|---|---|
+| `line-length` | `120` |
+| `indent-width` | `4` |
+| `output-format` | `"concise"` |
+| `extend-exclude` | `["docs"]` |
+
+### `[tool.ruff.lint]`
+
+| Setting | Value |
+|---|---|
+| `dummy-variable-rgx` | `"^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"` |
+| `select` | `["ALL"]` |
+| `pydocstyle.convention` | `"google"` |
+
+#### Ignored rules
+
+| Code | Reason |
+|---|---|
+| `ANN101` | Missing type annotation for `self` in method |
+| `ANN102` | Missing type annotation for `cls` in classmethod |
+| `ANN204` | Missing return type annotation for special (dunder) method |
+| `FBT` | Using boolean function arguments |
+| `TD` | TODOs |
+| `FIX001` | Resolve FIXMEs |
+| `FIX002` | Resolve TODOs |
+| `B028` | No explicit `stacklevel` keyword argument found in warning |
+| `D100` | Missing module docstring |
+| `D104` | Missing public package docstring |
+| `D105` | Missing docstring in magic method |
+| `D107` | Missing docstring in `__init__` |
+
+#### Per-file ignores (`tests/**.py`)
+
+| Code | Reason |
+|---|---|
+| `ANN201` | Missing return type annotation for public function |
+| `PT011` | Missing `match` parameter in `pytest.raises()` |
+| `S101` | Use of assert is detected |
+
+### `[tool.ruff.lint.isort]`
+
+| Setting | Value |
+|---|---|
+| `force-single-line` | `true` |
+| `no-lines-before` | `["future", "standard-library", "third-party", "first-party", "local-folder"]` |
