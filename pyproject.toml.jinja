@@ -1,0 +1,124 @@
+# see documentation, e.g.
+# - https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
+# - https://www.python.org/dev/peps/pep-0621/
+
+[project]
+name = "{{project_name}}"
+version = "0.1.0"
+description = "{{description}}"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {file = "LICENSE"}
+requires-python = ">={{python_requires}}"
+authors = [
+    {name = "{{author_name}}", email = "{{author_email}}"},
+]
+keywords = [""]
+
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/{{github_username}}/{{project_name}}"
+Issues = "https://github.com/{{github_username}}/{{project_name}}/issues"
+ReadTheDocs = "https://{{project_name}}.readthedocs.io"
+
+[dependency-groups]
+dev = [
+    "coverage[toml]",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "isort",
+    "pre-commit",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-autoapi",
+    "myst-parser",
+    "bump-my-version",
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-autoapi",
+    "myst-parser",
+]
+publishing = [
+    "build",
+    "twine",
+    "wheel",
+]
+
+[project.urls]
+Repository = "https://github.com/{{github_username}}/{{project_name}}"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/{{project_name}}"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["src/{{project_name}}"]
+command_line = "-m pytest"
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+output-format = "concise"
+extend-exclude = ["docs"]
+
+[tool.isort]
+profile = "black"
+line_length = 120
+indent = "    "
+known_first_party = ["{{project_name}}"]
+force_single_line = true
+no_lines_before = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.ruff.lint]
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+select = ["ALL"]
+ignore = [
+    "ANN101", # Missing type annotation for `self` in method
+    "ANN102", # Missing type annotation for `cls` in classmethod
+    "ANN204", # Missing return type annotation for special (dunder) method
+    "FBT",    # Using boolean function arguments
+    "TD",     # TODOs
+    "FIX001", # Resolve FIXMEs
+    "FIX002", # Resolve TODOs
+    "B028",   # No explicit `stacklevel` keyword argument found in warning
+    "D100",   # Missing module docstring
+    "D104",   # Missing public package docstring
+    "D105",   # Missing docstring in magic method
+    "D107",   # Missing docstring in `__init__`
+]
+pydocstyle.convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**.py" = [
+    "ANN201", # Missing return type annotation for public function
+    "PT011",  # Missing `match` parameter in `pytest.raises()`
+    "S101",   # Use of assert is detected
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["{{project_name}}"]
+force-single-line = true
+no-lines-before = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[tool.bumpversion]
+current_version = "0.1.0"
+
+[[tool.bumpversion.files]]
+filename = "src/{{project_name}}/__init__.py"
