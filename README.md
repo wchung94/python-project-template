@@ -4,7 +4,7 @@
 This repository contains the copier/template for fast setup of a generic python project repository with UV.
 
 ```
-copier copy https://github.com/wchung94/python-project-template/copier-template/ <local-directory-path>
+copier copy https://github.com/wchung94/python-project-template/copier-template <local-directory-path>
 ```
 
 
