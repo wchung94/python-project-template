@@ -19,6 +19,25 @@ copier copy https://github.com/wchung94/python-project-template/copier-template 
 If you are lazy and have a short-term memory like me, use this template to setup your python project fast and easy.
 Time wasted with repetitive task can be spent on playing video games and watching some slice-of-life animes.
 
+## Content
+
+The copier template contains the following copy resources:
+- .github basic action workflows
+- pre-commit hook for basic linting
+- src directory for project name and main starting file
+- tests directory for unit and integration test files
+- pyproject.toml manager for UV
+- makefile template
+- Agents.md template
+
+# Structure agents.md
+- Keep it short:
+Should be max 300 lines. Every line goes into every session. Make each line count 
+- Separate agents.md if needed in separate task-specific docs.
+- use reference file:line locations rather than embedding code snippets.
+- Treat the agents.md as part of infrastructure instead of scratchpad
+
+
 ## Contributing
 
 If you want to contribute to the development of copier-template,
