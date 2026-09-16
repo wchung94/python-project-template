@@ -109,9 +109,6 @@ Update `CONTINUITY.md` only when there is a meaningful delta in:
 
 
 
-
-
-
 ## Definition of done
 
 A task is done when:
