@@ -1,0 +1,101 @@
+# Global Agents Guidance (./AGENTS.md)
+
+Global working agreements for AGENTS.
+
+
+## Important rules
+* Build modular first. No code files longer than 300 lines of code! Documentation, plans etc. can be as long as needed, but code files must be modular. 
+* Think ahead! Do not write code that you know will need to be changed later without planning for that change now. So keep entrypoints stable and isolate logic into smaller modules from the start!
+* Do not limit yourself due to the LOC limit! If a task requires more code, split it into multiple files/modules/functions
+* Do not add default fallbacks during development phase. Is something fails, let it fail, so we can fix it!
+* Do not leavy empty try-catch blocks anywhere!
+* Do not reinvent the wheel! Use open source, self-hosted libraries when needed. Ask the user, and help them qualify their selection. 
+* Design UI for the end-user, not for the schema! 
+
+
+# What
+## Mission
+Describe the project here
+
+## project structure
+./src/ contains the source code
+./test/ contains the test code files
+./docs/ contains the resources such as images for readme.
+
+
+
+# Web search policy
+- Disable web search to avoid massive token consumption
+- If web searching, only fetch the minimal target docs; summarize (no large dumps)
+No fallback code when primary method fails. Always 
+
+# Default autonomy and safety
+- Default to read-only exploration and analysis.
+- When edits are needed, only **workspace-scoped** write access and keep changes inside the repo.
+- When interacting with remote APIs, you must use READ-only calls, unless explicitily instructed otherwise by the user. 
+
+
+### Editing files
+
+- Make the smallest safe change that solves the issue.
+- Preserve existing style and conventions.
+- Prefer patch-style edits (small, reviewable diffs) over full-file rewrites.
+- After making changes, run the project’s standard checks when feasible (format/lint, unit tests, build/typecheck).
+
+### Secrets and sensitive data
+
+- Never print secrets (tokens, private keys, credentials) to terminal output.
+- Do not request users paste secrets.
+- Avoid commands that might expose secrets (e.g., dumping env vars broadly, `cat ~/.ssh/*`).
+- Prefer existing authenticated CLIs; redact sensitive strings in any displayed output.
+
+
+
+## Baseline workflow
+
+- Start every task by determining:
+  1. Goal + acceptance criteria.
+  2. Constraints (time, safety, scope).
+  3. What must be inspected (files, commands, tests, docs).
+  4. Whether the request depends on **recency** (if yes, apply the "Accuracy, recency, and sourcing" rules).
+  5. If requirements are ambiguous, ask targeted clarifying questions before making irreversible changes.
+
+## CONTINUITY.md (REQUIRED)
+
+Maintain a single CONTINUITY file for the current workspace: `CONTINUITY.md`.
+- `CONTINUITY.md` is a living document and canonical briefing designed to survive compaction; do not rely on earlier chat/tool output unless it's reflected there.
+- At the start of each assistant turn: read `CONTINUITY.md` before acting.
+
+### Keep it bounded (anti-bloat)
+- Keep `CONTINUITY.md` short and high-signal:
+  - `Snapshot`: ≤ 25 lines.
+  - `Done (recent)`: ≤ 7 bullets.
+  - `Working set`: ≤ 12 paths.
+  - `Receipts`: keep last 10–20 entries.
+- If sections exceed caps, compress older items into milestone bullets with pointers (commit/PR/log path/doc path). Do not paste raw logs.
+
+
+
+### File Format
+
+Update `CONTINUITY.md` only when there is a meaningful delta in:
+
+  - `[PLANS]`: "Plans Log" is a guide for the next contributor as much as checklists for you.
+  - `[DECISIONS]`: "Decisions Log" is used to record all decisions made.
+  - `[PROGRESS]`: "Progress Log" is used to record course changes mid-implementation, documenting why and reflecting upon the implications.
+  - `[DISCOVERIES]`: "Discoveries Log" is for when when you discover optimizer behavior, performance tradeoffs, unexpected bugs, or inverse/unapply semantics that shaped your approach, capture those observations with short evidence snippets (test output is ideal.
+  - `[OUTCOMES]`: "Outcomes Log" is used at completion of a major task or the full plan, summarizing what was achieved, what remains, and lessons learned.
+## Definition of done
+
+A task is done when:
+
+- the requested change is implemented or the question is answered,
+  - verification is provided:
+  - build attempted (when source code changed),
+  - linting run (when source code changed),
+  - errors/warnings addressed (or explicitly listed and agreed as out-of-scope),
+  - plus tests/typecheck as applicable,
+- documentation is updated exhaustively for impacted areas,
+- impact is explained (what changed, where, why),
+- follow-ups are listed if anything was intentionally left out.
+- `CONTINUITY.md` is updated if the change materially affects goal/state/decisions.
